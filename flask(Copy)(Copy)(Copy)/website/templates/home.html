@@ -1,0 +1,89 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %} 
+{% block content %}
+<br><h1 align="center">BUDGET MANAGEMENT</h1>
+
+<style>
+  /*h1 {
+    background-color: #333; /* Dark gray background color */
+    /*color: #bbb; /* Light gray text color */
+    /*border-radius: 50px;
+  }*/
+
+  h3{
+    font-size: 28px;
+    font-weight: 700;
+  }
+  p{
+    font-size: 19px;
+    color:black;
+    
+  }
+  a{
+    font-size: 19px;
+  }
+  .content a{
+    font-size: 21px;
+    border-radius: 20px;
+  }
+
+  .content .btn{
+    background: black;
+    border: 3px solid white;
+  } 
+
+  .trans a{
+    font-size: 21px;
+    border-radius: 20px;
+  }
+
+  .trans .btn{
+    background-color: black;
+    border: 3px solid white;
+  }
+
+  .box-container p{
+    background: white;
+    padding: 1.2rem;
+  }
+
+</style>
+
+<!-- Monthly Savings -->
+<div class="container">
+  <h3>Monthly Savings:</h3>
+  <div class="box-container">
+    {% if monthly_savings > 0 %}
+      <p>Your total savings for the month is Php{{ monthly_savings }}.</p>
+    {% elif monthly_savings < 0 %}
+      <p>You overspent by Php{{ -monthly_savings }} this month.</p>
+    {% else %}
+      <p>You broke even this month.</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Savings Status -->
+<div class="container">
+  <h3>Savings Status:</h3>
+  <div class="box-container">
+    <p>{{ savings_status }}</p>
+  </div>
+</div>
+
+<div align="center">
+  <div class="content">
+    <a href="{{ url_for('views.add_expense') }}" class="btn btn-primary">Add Expense</a>
+    <a href="{{ url_for('views.add_income') }}" class="btn btn-primary">Add Income</a>
+  </div>
+</div>
+  
+<!-- Link to view all transactions -->
+<div align="center">
+  <p>    
+  </p>
+  <div class="trans">
+    <a href="{{ url_for('views.transactions') }}" class="btn btn-primary">View All Transactions</a>
+  </div>
+</div>
+{% endblock %}

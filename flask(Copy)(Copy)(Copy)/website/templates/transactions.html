@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .table{
+        font-size: 20px;
+        font-weight: 650;
+        background-color: white;
+    }
+
+    .box-container .btn{
+      font-size: 21px;
+      background: black;
+      border: 3px solid white;
+      border-radius: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+
+
+
+</style>
+<div class="container">
+    <br><h1>Transactions</h1>
+    
+    <h3>Expenses:</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.find("description").text }}</td>
+                <td>{{ expense.find("amount").text }}</td>
+                <td>{{ expense.find("date").text }}</td>
+                <td>{{ expense.find("category").text }}</td>
+                <td>
+                    <form action="{{ url_for('views.delete_expense', expense_hash=expense.attrib['hash']) }}" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Income:</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for income in income %}
+            <tr>
+                <td>{{ income.find("description").text }}</td>
+                <td>{{ income.find("amount").text }}</td>
+                <td>{{ income.find("date").text }}</td>
+                <td>{{ income.find("category").text }}</td>
+                <td>
+                    <form action="{{ url_for('views.delete_income', income_hash=income.attrib['hash']) }}" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="box-container">
+        <a href="{{ url_for('views.home') }}" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+{% block title %}Add Income{% endblock %} 
+{% block content %}
+
+<style>
+  label{
+    font-size: 23px;
+    font-weight: bolder;
+  }
+
+  .btn{
+    font-size: 21px;
+    background: black;
+    border: 3px solid white;
+    border-radius: 20px;
+  }
+
+</style>
+
+<br><h1 align="center">ADD INCOME</h1>
+<form method="POST" action="{{ url_for('views.add_income') }}">
+    <!-- Income form fields -->
+  <div class="form-group">
+    <label for="incomeAmount">Amount:</label>
+    <input type="number" class="form-control" id="incomeAmount" name="incomeAmount" required>
+  </div>
+  <div class="form-group">
+    <label for="incomeDescription">Description:</label>
+    <input type="text" class="form-control" id="incomeDescription" name="incomeDescription" required>
+  </div>
+  <div class="form-group">
+    <label for="incomeCategory">Category:</label>
+    <input type="text" class="form-control" id="incomeCategory" name="incomeCategory" required>
+  </div>
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Income</button>
+  </div>
+</form>
+<div align="center">
+  <p>
+  </p>
+  <a href="{{ url_for('views.home') }}" class="btn btn-primary">Back to Home</a>
+</div>
+{% endblock %}

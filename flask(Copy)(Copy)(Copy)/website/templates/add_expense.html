@@ -1,0 +1,45 @@
+{% extends "base.html" %} 
+{% block title %}Add Expense{% endblock %} 
+{% block content %}
+
+<style>
+  label{
+      font-size: 25px;
+      font-weight: 650;
+  }
+
+  .btn{
+    font-size: 21px;
+    background: black;
+    border: 3px solid rgb(245, 183, 183);
+    border-radius: 20px;
+  }
+
+
+</style>
+
+<br><h1 align="center">ADD EXPENSES</h1>
+<form method="POST" action="{{ url_for('views.add_expense') }}">
+    <!-- Expense form fields -->
+  <div class="form-group">
+    <label for="expenseAmount">Amount:</label>
+    <input type="number" class="form-control" id="expenseAmount" name="expenseAmount" required>
+  </div>
+  <div class="form-group">
+    <label for="expenseDescription">Description:</label>
+    <input type="text" class="form-control" id="expenseDescription" name="expenseDescription" required>
+  </div>
+  <div class="form-group">
+    <label for="expenseCategory">Category:</label>
+    <input type="text" class="form-control" id="expenseCategory" name="expenseCategory" required>
+  </div>
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Expense</button>
+  </div>
+</form>
+<div align="center">
+  <p>
+  </p>
+  <a href="{{ url_for('views.home') }}" class="btn btn-primary">Back to Home</a>
+</div>
+{% endblock %}
